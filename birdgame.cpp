@@ -13,7 +13,7 @@ void main()
 	myEngine->AddMediaFolder( "C:\\ProgramData\\TL-Engine\\Media" );
 
 	/**** Set up your scene here ****/
-
+	int test = 0;
 
 	// The main game loop, repeat until engine is stopped
 	while (myEngine->IsRunning())

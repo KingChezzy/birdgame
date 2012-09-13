@@ -19,4 +19,6 @@ private:
 Object* CreateObject( tle::IMesh* mesh, float x, float y, float z );
 void RemoveObject( Object* object );
 
+tle::IMesh* FindObjectMesh( string name );
+
 #endif

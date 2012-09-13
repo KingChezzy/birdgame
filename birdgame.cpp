@@ -1,6 +1,8 @@
 // birdgame.cpp: A program using the TL-Engine
 
 #include <TL-Engine.h>	// TL-Engine include file and namespace
+#include "Object.h"
+
 using namespace tle;
 
 void main()
@@ -14,6 +16,10 @@ void main()
 
 	/**** Set up your scene here ****/
 	int test = 0;
+	ICamera* camera = myEngine->CreateCamera( kFPS );
+	IMesh* cube_mesh = myEngine->LoadMesh( "Cube.x" );
+
+	Object* cube_object = CreateObject( cube_mesh, 10, 10, 10 );
 
 	// The main game loop, repeat until engine is stopped
 	while (myEngine->IsRunning())

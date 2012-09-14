@@ -70,16 +70,14 @@ void main()
 		myEngine->DrawScene();
 
 		/**** Update your scene each frame here ****/
+		if (myEngine->KeyHit( Key_Escape )) myEngine->Stop();
+
 		myEngine->StartMouseCapture();
 		birdAngle = myEngine->GetMouseMovementX();
 		birdRads = (birdAngle/180)*3.14;
 		birdXmovement = sin(birdRads);
 		birdModel->Move(birdXmovement*20,-0.005,0.05);
 		//birdModel->RotateLocalZ(-birdXmovement*5);
-		if ( myEngine->KeyHit( Key_Escape ))
-		{
-			myEngine->Stop();
-		}
 	}
 
 	// Delete the 3D engine now we are finished with it

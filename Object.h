@@ -10,6 +10,8 @@ public:
 	~Object();
 
 	void SetRotation( float x, float y, float z );
+	void SetScale( float x, float y, float z );
+	void SetSkin( string name );
 
 private:
 	tle::IMesh* m_ParentMesh;

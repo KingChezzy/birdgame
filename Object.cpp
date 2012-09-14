@@ -70,3 +70,15 @@ void Object::SetRotation( float x, float y, float z )
 	this->m_Model->RotateLocalY( y );
 	this->m_Model->RotateLocalZ( z );
 }
+
+void Object::SetScale( float x, float y, float z )
+{
+	this->m_Model->ScaleX( x );
+	this->m_Model->ScaleY( y );
+	this->m_Model->ScaleZ( z );
+}
+
+void Object::SetSkin( string name )
+{
+	this->m_Model->SetSkin( name.c_str() );
+}

@@ -2,6 +2,7 @@
 
 #include <TL-Engine.h>	// TL-Engine include file and namespace
 #include <iostream>
+#include <math.h>
 #include "Object.h"
 #include "Engine.h"
 #include "LuaMap.h"
@@ -42,8 +43,23 @@ void main()
 	}
 	/**** Set up your scene here ****/
 	int test = 0;
-	ICamera* camera = myEngine->CreateCamera( kFPS );
+	//ICamera* camera = myEngine->CreateCamera( kFPS );
 	IMesh* cube_mesh = myEngine->LoadMesh( "Cube.x" );
+	IMesh* floorMesh = myEngine->LoadMesh("floor.x");
+	IMesh* birdMesh = myEngine->LoadMesh("seagull.x");
+
+	IModel* floorModel = floorMesh->CreateModel();
+	IModel* birdModel = birdMesh->CreateModel(0,100,-50);
+
+	ICamera* myCamera;
+	myCamera = myEngine->CreateCamera( kManual,0,200,-150 );
+	//myCamera->AttachToParent (birdModel);
+
+	//Bird movement values
+	float mouseMove;
+	float birdAngle = 0.0f;
+	float birdRads = 0.0f;
+	float birdXmovement;
 
 	//Object* cube_object = CreateObject( cube_mesh, 10, 10, 10 );
 
@@ -54,7 +70,16 @@ void main()
 		myEngine->DrawScene();
 
 		/**** Update your scene each frame here ****/
-
+		myEngine->StartMouseCapture();
+		birdAngle = myEngine->GetMouseMovementX();
+		birdRads = (birdAngle/180)*3.14;
+		birdXmovement = sin(birdRads);
+		birdModel->Move(birdXmovement*20,-0.005,0.05);
+		//birdModel->RotateLocalZ(-birdXmovement*5);
+		if ( myEngine->KeyHit( Key_Escape ))
+		{
+			myEngine->Stop();
+		}
 	}
 
 	// Delete the 3D engine now we are finished with it
